@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import * as cheerio from "cheerio";
 import { Config } from "./config";
 import type { ITableData } from "./types";
 
-async function getHTML(url: string): Promise<string | null> {
+async function getHTML(url: string): Promise<string> {
   try {
     const http = axios.create({
       baseURL: Config.DOMAIN,
@@ -15,7 +15,11 @@ async function getHTML(url: string): Promise<string | null> {
     });
     return res.data as string;
   } catch (err) {
-    return null;
+    if (isAxiosError(err) && err.response) {
+      throw new Error(err.response.statusText);
+    } else {
+      throw new Error();
+    }
   }
 }
 
@@ -25,7 +29,7 @@ function parseHTML(data: string): ITableData[] {
   const table = body.find("table > tbody > tr");
   const output: ITableData[] = [];
   table.map((i, el) => {
-    let subject = $(el).find("td.td_block > a.board_subject").text().replace("\n", "").trim();
+    let subject = $(el).find("td.td_block > a.board_subject").text().trim();
     if (subject) {
       const link = $(el).find("td.td_block > a.board_subject").attr("href");
       let boardLink = "";
@@ -45,8 +49,6 @@ function parseHTML(data: string): ITableData[] {
 
 async function main() {
   const html = await getHTML(Config.URL);
-  if (html) {
-    console.log(parseHTML(html));
-  }
+  console.log(parseHTML(html));
 }
 main();
