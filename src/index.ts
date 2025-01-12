@@ -1,7 +1,7 @@
-import axios, { AxiosError, isAxiosError } from "axios";
+import axios, { isAxiosError } from "axios";
+import type { ITableData } from "./types";
 import * as cheerio from "cheerio";
 import { Config } from "./config";
-import type { ITableData } from "./types";
 
 async function getHTML(url: string): Promise<string> {
   try {
@@ -32,6 +32,9 @@ function parseHTML(data: string): ITableData[] {
     let subject = $(el).find("td.td_block > a.board_subject").text().trim();
     if (subject) {
       const link = $(el).find("td.td_block > a.board_subject").attr("href");
+      const numComments = Number($(el).find("td.align_right").text().replace(",", "").trim());
+      const proposerCategory = $(el).find("td:nth-child(3)").text().trim();
+      const committee = $(el).find("td:nth-child(4)").text().trim();
       let boardLink = "";
       let num = i + 1;
       if (link) {
@@ -40,6 +43,9 @@ function parseHTML(data: string): ITableData[] {
       output.push({
         num,
         subject,
+        proposerCategory,
+        committee,
+        numComments,
         link: boardLink,
       });
     }
