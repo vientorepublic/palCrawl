@@ -32,11 +32,11 @@ function parseHTML(data: string): ITableData[] {
     let subject = $(el).find("td.td_block > a.board_subject").text().trim();
     if (subject) {
       const link = $(el).find("td.td_block > a.board_subject").attr("href");
-      const numComments = Number($(el).find("td.align_right").text().replace(",", "").trim());
+      const numComments = Number($(el).find("td:nth-child(8)").text().replace(",", "").trim());
       const proposerCategory = $(el).find("td:nth-child(3)").text().trim();
       const committee = $(el).find("td:nth-child(4)").text().trim();
+      const num = i + 1;
       let boardLink = "";
-      let num = i + 1;
       if (link) {
         boardLink = Config.DOMAIN + link;
       }
