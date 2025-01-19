@@ -4,5 +4,5 @@ export interface ITableData {
   proposerCategory: string;
   committee: string;
   numComments: number;
-  link?: string;
+  link: string;
 }
