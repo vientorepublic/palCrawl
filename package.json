@@ -7,7 +7,6 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node ./dist/index.js",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.ts\""
   },
