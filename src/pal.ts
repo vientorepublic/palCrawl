@@ -69,9 +69,9 @@ export class PalCrawl {
     return output;
   }
 
-  public async get(): Promise<void> {
+  public async get(): Promise<ITableData[]> {
     const html = await this.getPalHTML();
     const table = this.parseTable(html);
-    console.log(table);
+    return table;
   }
 }
