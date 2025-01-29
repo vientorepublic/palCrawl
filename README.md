@@ -19,6 +19,29 @@ const table = await palCrawl.get();
 console.log(table);
 ```
 
+```typescript
+interface ITableData {
+  num: number;
+  subject: string;
+  proposerCategory: string;
+  committee: string;
+  numComments: number;
+  link: string;
+}
+```
+
+- `num`: 순서
+
+- `subject`: 입법예고 제목
+
+- `proposerCategory`: 제안자 구분
+
+- `committee`: 소관 위원회
+
+- `numComments`: 의견 수
+
+- `link`: 전문 보기 링크
+
 ## License
 
 MIT
