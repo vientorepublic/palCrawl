@@ -1,4 +1,4 @@
-# palCrawl
+# 국회 입법예고 크롤러
 
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 [![stars - pal-crawl](https://img.shields.io/github/stars/vientorepublic/pal-crawl?style=social)](https://github.com/vientorepublic/pal-crawl)
