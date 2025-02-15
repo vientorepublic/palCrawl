@@ -8,7 +8,9 @@
 
 국회입법예고(pal.assembly.go.kr)의 진행 중인 입법 예고 크롤러
 
-## How to use
+## Methods
+
+### get: () => Promise<ITableData[]>
 
 ```javascript
 import { PalCrawl } from 'pal-crawl';
@@ -21,26 +23,14 @@ console.log(table);
 
 ```typescript
 interface ITableData {
-  num: number;
-  subject: string;
-  proposerCategory: string;
-  committee: string;
-  numComments: number;
-  link: string;
+  num: number; // 의안번호
+  subject: string; // 입법예고 제목
+  proposerCategory: string; // 제안자 구분
+  committee: string; // 소관 위원회
+  numComments: number; // 의견 수
+  link: string; // 전문 보기 링크
 }
 ```
-
-- `num`: 순서
-
-- `subject`: 입법예고 제목
-
-- `proposerCategory`: 제안자 구분
-
-- `committee`: 소관 위원회
-
-- `numComments`: 의견 수
-
-- `link`: 전문 보기 링크
 
 ## License
 
